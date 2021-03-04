@@ -1,0 +1,107 @@
+@use "../vars" as v
+@use "../mixins/focus" as f
+
+nav#top-nav
+  display: flex
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  min-height: v.$nav-height
+  z-index: 99999
+  padding: v.$nav-v-pad 4rem
+  
+  background-color: v.$background
+  border-bottom: 1px solid v.$foreground-50
+  
+  transition: padding-top .2s ease-in-out, padding-bottom .2s ease-in-out
+  
+  @media screen and (max-width: v.$mq-mobile)
+    padding: .2rem 1rem
+  @media screen and (max-width: v.$mq-mobile-sm)
+    flex-direction: column
+    padding: .1rem .5rem
+    height: auto
+    
+  &.bottom
+    bottom: 0
+
+  &.compact
+    padding-top: .1rem
+    padding-bottom: .1rem
+    @media (prefers-reduced-motion)
+      height: v.$nav-height
+    
+  .navbar-nav
+    display: flex
+    flex-direction: row
+        
+    &.left
+      margin-right: auto
+    
+    &>.nav-item
+      padding: 0
+      display: flex
+      align-items: center
+      justify-content: center
+      color: v.$foreground-75
+      &:hover
+        color: v.$foreground
+        background-color: v.$accent-10
+        
+      &.register
+        font-weight: 600
+        background-color: v.$accent-25
+        border: 1px solid v.$accent-50
+        border-radius: .25rem
+        &:hover
+          background-color: v.$accent-50
+          border-color: v.$accent-75
+        
+      &.navbar-brand
+        color: v.$foreground-75
+        margin-right: 1rem
+        font-size: 1.25rem
+        line-height: inherit
+        white-space: nowrap
+        +f.focus
+      
+      .nav-link
+        position: relative
+        padding: 0 .5rem
+        height: 100%
+        display: flex
+        align-items: center
+        color: v.$foreground
+        +f.focus
+          
+        &.light
+          color: v.$foreground-75
+                    
+        &.user
+          &>.name
+            color: v.$foreground-75
+            padding-left: .5ch
+            @media screen and (max-width: v.$mq-mobile)
+              display: none
+              
+        &>.badge
+          position: absolute
+          bottom: 0
+          right: 0
+          display: block
+          background-color: v.$accent
+          color: v.$background
+          font-weight: bold
+          font-size: .8rem
+          text-align: center
+          line-height: 1
+          height: 1rem
+          min-width: 1rem
+          border: 1px solid v.$background
+          border-radius: .5rem
+              
+  time.timer
+    font-family: "Courier New", Courier, monospace
+    letter-spacing: -2px
+    margin: auto 0
